@@ -29,3 +29,12 @@
     // byte[] -> int     data -> n
     int n = ByteBuffer.wrap(data).getInt();
 ```
+
+>**Tasca 3 (Multicast)**  
+> Crea un servidor multicast que emeti paraules aleatòries agafades d'una llista.  
+> Crear un client que es connecti a aquest servei multicast i imprimeixi les paraules  
+> amb el número de vegades que han sortit o van sortint.
+
+>**Tasca 4 (Multicast)**  
+> Crea un servidor multicast que emeti frases aleatòries agafades d'una llista  
+> Crea un client que es connecti a aquest servei multicast i imprimeixi les frases que continguin més de 8 paraules.
