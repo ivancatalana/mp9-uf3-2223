@@ -6,10 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TcpSocketServer {
+    private Scanner sc = new Scanner(System.in);
     static final int PORT = 9090;
     private boolean end = false;
 
@@ -20,8 +22,9 @@ public class TcpSocketServer {
             serverSocket = new ServerSocket(PORT);
             while(!end){
                 clientSocket = serverSocket.accept();
+                System.out.println("Connexió amb: " + clientSocket.getInetAddress());
                 //processem la petició del client
-                //proccesClientRequest(clientSocket);
+                proccesClientRequest(clientSocket);
                 //tanquem el sòcol temporal per atendre el client
                 closeClient(clientSocket);
             }
@@ -42,6 +45,7 @@ public class TcpSocketServer {
         try {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out= new PrintStream(clientSocket.getOutputStream());
+            System.out.println("Canals d'e/s establerts...");
             do{
                 //processem el missatge del client i generem la resposta. Si
                 //clientMessage és buida generarem el missatge de benvinguda
@@ -57,7 +61,9 @@ public class TcpSocketServer {
     }
 
     private String processData(String data) {
-        return "Welcome";
+        System.out.println("Clientt$ " + data);
+        System.out.print("$ ");
+        return sc.nextLine();
     }
 
     private boolean isFarewellMessage(String msg) {

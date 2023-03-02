@@ -7,11 +7,13 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class TcpSocketClient {
+    private Scanner sc = new Scanner(System.in);
 
     public void connect(String address, int port) {
         String serverData;
@@ -28,13 +30,13 @@ public class TcpSocketClient {
             while(continueConnected){
                 serverData = in.readLine();
                 //processament de les dades rebudes i obtenció d'una nova petició
-                //request = getRequest(serverData);
+                request = getRequest(serverData);
                 //enviament de la petició
-                //out.println(request);//assegurem que acaba amb un final de línia
+                out.println(request);//assegurem que acaba amb un final de línia
                 out.flush(); //assegurem que s'envia
                 //comprovem si la petició és un petició de finalització i en cas
                 //que ho sigui ens preparem per sortir del bucle
-                //continueConnected = mustFinish(request);
+                continueConnected = mustFinish(request);
             }
 
             close(socket);
@@ -45,6 +47,18 @@ public class TcpSocketClient {
         }
 
     }
+
+    private boolean mustFinish(String request) {
+        if(request.equals("bye")) return false;
+        else return true;
+    }
+
+    private String getRequest(String serverData) {
+        System.out.println("servidor$ " + serverData);
+        System.out.print("$ ");
+        return sc.nextLine();
+    }
+
     private void close(Socket socket){
         //si falla el tancament no podem fer gaire cosa, només enregistrar
         //el problema
@@ -63,5 +77,10 @@ public class TcpSocketClient {
             //enregistrem l'error amb un objecte Logger
             Logger.getLogger(TcpSocketClient.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static void main(String[] args) {
+        TcpSocketClient tcpSocketClient = new TcpSocketClient();
+        tcpSocketClient.connect("localhost", 9090);
     }
 }
