@@ -25,6 +25,13 @@ public class SecretNum {
 		else if(num<n) return 1;
 		else return 2;
 	}
+
+	public String comprova(String s) {
+		int n = Integer.parseInt(s);
+		if(num==n) return "Correcte";
+		else if(num<n) return "Més petit";
+		else return "Més gran";
+	}
 	
 
 	public int getNum() {
