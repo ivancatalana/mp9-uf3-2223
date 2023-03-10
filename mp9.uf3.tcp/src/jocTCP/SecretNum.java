@@ -1,4 +1,4 @@
-package mp9.uf3.udp.unicast.joc;
+package jocTCP;
 
 public class SecretNum {
 	/* Classe que genera numeros aleatoris per jugar a adivinar-los i els comprova
@@ -25,6 +25,14 @@ public class SecretNum {
 		else if(num<n) return 1;
 		else return 2;
 	}
+	/*
+	public String comprova(String n) {
+
+		if(num==Integer.parseInt(n)) return "Has encertat";
+		else if(num<Integer.parseInt(n)) return "Es mes petit";
+		else return "Es mes gran";
+	}
+	*/
 
 	public String comprova(String s) {
 		int n = Integer.parseInt(s);
@@ -32,7 +40,7 @@ public class SecretNum {
 		else if(num<n) return "Més petit";
 		else return "Més gran";
 	}
-	
+
 
 	public int getNum() {
 		return num;

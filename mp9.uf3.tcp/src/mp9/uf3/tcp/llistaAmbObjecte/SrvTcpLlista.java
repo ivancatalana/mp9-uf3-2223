@@ -1,4 +1,4 @@
-package mp9.uf3.tcp.joc;
+package mp9.uf3.tcp.llistaAmbObjecte;
 
 import mp9.uf3.tcp.jocObj.SecretNum;
 
@@ -9,17 +9,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class SrvTcpAdivina {
+public class SrvTcpLlista {
 /* Servidor TCP que genera un número perquè ClientTcpAdivina.java jugui a encertar-lo 
  * i on la comunicació dels diferents jugador passa per el Thread : ThreadServidorAdivina.java
  * */
 	
 	int port;
-	SecretNum ns;
-	
-	public SrvTcpAdivina(int port ) {
+	Llista llista;
+	public SrvTcpLlista(int port ) {
 		this.port = port;
-		ns = new SecretNum(100);
 	}
 	
 	public void listen() {
@@ -31,12 +29,12 @@ public class SrvTcpAdivina {
 			while(true) { //esperar connexió del client i llançar thread
 				clientSocket = serverSocket.accept();
 				//Llançar Thread per establir la comunicació
-				ThreadSevidorAdivina FilServidor = new ThreadSevidorAdivina(clientSocket, ns);
+				ThreadSevidorLlista FilServidor = new ThreadSevidorLlista(clientSocket);
 				Thread client = new Thread(FilServidor);
 				client.start();
 			}
 		} catch (IOException ex) {
-			Logger.getLogger(SrvTcpAdivina.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(SrvTcpLlista.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -48,7 +46,7 @@ public class SrvTcpAdivina {
  
         
         //int port = Integer.parseInt(args[0]);
-        SrvTcpAdivina srv = new SrvTcpAdivina(5558);
+        SrvTcpLlista srv = new SrvTcpLlista(5558);
         srv.listen();
 
 	}

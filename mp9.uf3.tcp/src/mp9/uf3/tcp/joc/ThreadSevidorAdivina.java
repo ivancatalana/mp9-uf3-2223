@@ -1,6 +1,6 @@
 package mp9.uf3.tcp.joc;
 
-import mp9.uf3.udp.unicast.joc.SecretNum;
+import mp9.uf3.tcp.jocObj.SecretNum;
 
 import java.io.BufferedReader;
 import java.io.IOException;

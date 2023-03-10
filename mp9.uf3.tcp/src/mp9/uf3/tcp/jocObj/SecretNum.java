@@ -1,4 +1,4 @@
-package mp9.uf3.udp.unicast.joc;
+package mp9.uf3.tcp.jocObj;
 
 public class SecretNum {
 	/* Classe que genera numeros aleatoris per jugar a adivinar-los i els comprova
